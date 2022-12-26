@@ -1,7 +1,12 @@
+import java.awt.*;
+import java.util.Random;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 import java.util.Vector;
+import javax.swing.JFrame;
 
-public class Main
+public class Main extends JFrame
 {
     static int size = 15;
     static int first;
@@ -20,6 +25,7 @@ public class Main
     static double crossoverRate;
     static int crossoverSize;
     static double mutationRate;
+
     private void set()//設定參數
     {
         chromosomeSize = 8;//幾條染色體
@@ -283,11 +289,30 @@ public class Main
     }
     public Main()
     {
+        setSize(500,500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+
+    public void paint(Graphics g)
+    {
+        /*********************************************************/
         set();//設定參數
         city();//產生城市
         for(int i=0;i<size;i++)
         {
             System.out.println("city:" + i +"("+point[i][0]+","+point[i][1]+")");
+        }
+        /*********************************************************/
+        g.setColor(Color.red);
+        for(int i=0;i<size;i++)
+        {
+            g.fillOval(point[i][0],point[i][1],10,10);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
         /*********************************************************/
         distance();//算出距離
@@ -311,35 +336,82 @@ public class Main
             System.out.println(Chromosome[i][size-1] + "] total:" + totaldistance(i));
         }
         /*********************************************************/
-       for(int k=0;k<generationSize;k++)
-       {
-           System.out.println("第"+(k+1)+"代");
-           choosetime = 0;
-           for(int t =0;t<crossoverSize*2;t++)
-           {
-               storage(1);
-               selection();//選擇染色體
-               selectiontwo();//選擇2條染色體
-               crossover();//交配
-               mutation();//突變
-               storage(2);
-           }
-           /*********************************************************/
-           choose();//選擇最佳8個
-           distance();//算出距離
-           for (int i = 0; i < chromosomeSize-1; i++)
-           {
-               System.out.print("[");
-               for (int j = 0; j < size - 1; j++)
-               {
-                   System.out.print(Chromosome[i][j] + " , ");
-               }
-               System.out.println(Chromosome[i][size - 1] + "] total:" + totaldistance(i));
-           }
-       }
+        for(int k=0;k<generationSize;k++)
+        {
+            System.out.println("第"+(k+1)+"代");
+            choosetime = 0;
+            for(int t =0;t<crossoverSize*2;t++)
+            {
+                storage(1);
+                selection();//選擇染色體
+                selectiontwo();//選擇2條染色體
+                crossover();//交配
+                mutation();//突變
+                storage(2);
+            }
+            /*********************************************************/
+            choose();//選擇最佳8個
+            distance();//算出距離
+            for (int i = 0; i < chromosomeSize-1; i++)
+            {
+                System.out.print("[");
+                for (int j = 0; j < size - 1; j++)
+                {
+                    System.out.print(Chromosome[i][j] + " , ");
+                }
+                System.out.println(Chromosome[i][size - 1] + "] total:" + totaldistance(i));
+            }
+            /*********************************************************/
+            for(int i=0;i<14;i++)
+            {
+                g.setColor(Color.blue);
+                g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
+                        point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e)
+                {
+                    throw new RuntimeException(e);
+                }
+            }
+            /*********************************************************/
+            for(int i=0;i<14;i++)
+            {
+                g.setColor(Color.white);
+                g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
+                        point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e)
+                {
+                    throw new RuntimeException(e);
+                }
+            }
+            /*********************************************************/
+        }
+        /*********************************************************/
+        for(int i=0;i<14;i++)
+        {
+            g.setColor(Color.red);
+            g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
+                    point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e)
+            {
+                throw new RuntimeException(e);
+            }
+        }
+        /*********************************************************/
+        try {
+            Thread.sleep(100000000);
+        } catch (InterruptedException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
     public static void main(String[] args)
     {
-        new Main();
+        new Main().setVisible(true);
     }
 }
