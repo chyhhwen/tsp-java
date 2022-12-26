@@ -3,4 +3,6 @@
 `draw.java` 測試繪圖\
 `TestVector.java` 測試向量
 ***
-![avatar](https://github.com/chyhhwen/tsp-java/image.png)
+執行結果\
+![image](https://github.com/chyhhwen/tsp-java/blob/main/image.png?raw=true)
+***
