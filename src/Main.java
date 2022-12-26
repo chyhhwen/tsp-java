@@ -29,7 +29,7 @@ public class Main extends JFrame
     private void set()//設定參數
     {
         chromosomeSize = 8;//幾條染色體
-        generationSize = 100;//世代次數
+        generationSize = 1000;//世代次數
         crossoverRate = 0.8;//交配率
         crossoverSize = 2; // 交配池大小
         mutationRate = 0.1;//突變率
@@ -272,7 +272,7 @@ public class Main extends JFrame
                 }
             }
         }
-        for (int i=0;i<7;i++)
+        for (int i=0;i<8;i++)
         {
             for(int j=0;j<length;j++)
             {
@@ -352,7 +352,7 @@ public class Main extends JFrame
             /*********************************************************/
             choose();//選擇最佳8個
             distance();//算出距離
-            for (int i = 0; i < chromosomeSize-1; i++)
+            for (int i = 0; i < chromosomeSize; i++)
             {
                 System.out.print("[");
                 for (int j = 0; j < size - 1; j++)
@@ -368,7 +368,7 @@ public class Main extends JFrame
                 g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
                         point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(1);
                 } catch (InterruptedException e)
                 {
                     throw new RuntimeException(e);
@@ -381,7 +381,7 @@ public class Main extends JFrame
                 g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
                         point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(0);
                 } catch (InterruptedException e)
                 {
                     throw new RuntimeException(e);
@@ -396,7 +396,7 @@ public class Main extends JFrame
             g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
                     point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
             try {
-                Thread.sleep(10);
+                Thread.sleep(1);
             } catch (InterruptedException e)
             {
                 throw new RuntimeException(e);
