@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 public class Main extends JFrame
 {
-    static int size = 15;
+    static int size = 20;
     static int first;
     static int second;
     static int point[][] = new int[size][2];//座標
@@ -29,8 +29,8 @@ public class Main extends JFrame
     private void set()//設定參數
     {
         chromosomeSize = 8;//幾條染色體
-        generationSize = 1000;//世代次數
-        crossoverRate = 0.8;//交配率
+        generationSize = 10000;//世代次數
+        crossoverRate = 0.75;//交配率
         crossoverSize = 2; // 交配池大小
         mutationRate = 0.1;//突變率
     }
@@ -272,7 +272,7 @@ public class Main extends JFrame
                 }
             }
         }
-        for (int i=0;i<8;i++)
+        for (int i=0;i<chromosomeSize;i++)
         {
             for(int j=0;j<length;j++)
             {
@@ -309,7 +309,7 @@ public class Main extends JFrame
         {
             g.fillOval(point[i][0],point[i][1],10,10);
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -362,20 +362,20 @@ public class Main extends JFrame
                 System.out.println(Chromosome[i][size - 1] + "] total:" + totaldistance(i));
             }
             /*********************************************************/
-            for(int i=0;i<14;i++)
+            for(int i=0;i<size-1;i++)
             {
                 g.setColor(Color.blue);
                 g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
                         point[Chromosome[0][i+1]][0] + 5, point[Chromosome[0][i+1]][1] + 5);
                 try {
-                    Thread.sleep(1);
+                    Thread.sleep(0);
                 } catch (InterruptedException e)
                 {
                     throw new RuntimeException(e);
                 }
             }
             /*********************************************************/
-            for(int i=0;i<14;i++)
+            for(int i=0;i<size-1;i++)
             {
                 g.setColor(Color.white);
                 g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
@@ -390,7 +390,7 @@ public class Main extends JFrame
             /*********************************************************/
         }
         /*********************************************************/
-        for(int i=0;i<14;i++)
+        for(int i=0;i<size-1;i++)
         {
             g.setColor(Color.red);
             g.drawLine(point[Chromosome[0][i]] [0]+ 5, point[Chromosome[0][i]][1] + 5,
@@ -404,7 +404,7 @@ public class Main extends JFrame
         }
         /*********************************************************/
         try {
-            Thread.sleep(100000000);
+            Thread.sleep(1000000);
         } catch (InterruptedException e)
         {
             throw new RuntimeException(e);
